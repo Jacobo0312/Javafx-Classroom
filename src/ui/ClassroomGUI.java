@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import javafx.collections.FXCollections;
@@ -20,6 +21,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import model.Classroom;
 import model.Gender;//Revisar esto
 import model.UserAccount;
@@ -58,6 +61,9 @@ public class ClassroomGUI {
 
     @FXML
     private DatePicker birthday;
+
+    @FXML
+    private TextField directory;
 
     @FXML
     private TableView<UserAccount> table;
@@ -127,7 +133,7 @@ public class ClassroomGUI {
 
     @FXML
     public void loadWelcome(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("welcome.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
         fxmlLoader.setController(this);
         Parent welcome = fxmlLoader.load();
         pane.getChildren().clear();
@@ -176,18 +182,66 @@ public class ClassroomGUI {
         String dateBirthday = birthday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 
-        String browsers="EDGE";
-        photo = new Image("/images/alert.jpg"); // Para prueba
+        String browsers="EDGE";//Falta el box
+
+        String ruta=directory.getText();
+        photo = new Image("file:"+ruta); // Para prueba
         loginUser=username;
 
         classroom.addUser(username, password, photo, genderUser, careers, dateBirthday, browsers);
 
-
-        
-
         loadTable(event);
 
     }
+
+
+    @FXML
+    public void chooserImage(ActionEvent event) {
+
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new ExtensionFilter("Images","*.jpg","*.png"));
+        File file=fc.showOpenDialog(null);
+
+        if (file !=null){
+            System.out.println(file.getAbsolutePath());
+            directory.setText(file.getAbsolutePath());
+        }else{
+            directory.setText("Invalid");
+
+        }
+
+    }
+
+
+    @FXML
+    void login(ActionEvent event) throws IOException {
+
+         UserAccount user=classroom.getUser(txtUser.getText(),txtPassword.getText());
+    
+       if (user==null){
+          //Crear alerta
+          txtUser.clear();
+          txtPassword.clear();
+       }else{
+        
+        photo = user.getPhoto();
+        loginUser=user.getUsername();
+
+        //Crear alerta
+        loadTable(event);
+
+
+       }
+ 
+
+
+
+
+    }
+
+
+
+
 
 
 

@@ -44,8 +44,8 @@
       <TextField fx:id="createPassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <children>
-            <TextField prefHeight="49.0" prefWidth="143.0" />
-            <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="52.0" text="Button" />
+            <TextField fx:id="directory" prefHeight="49.0" prefWidth="143.0" />
+            <Button mnemonicParsing="false" onAction="#chooserImage" prefHeight="35.0" prefWidth="111.0" text="Browse" />
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">

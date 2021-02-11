@@ -24,7 +24,7 @@ public class Main extends Application{
   
     @Override
      public void start (Stage primaryStage) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("welcome.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-pane.fxml"));
 
 		fxmlLoader.setController(classroomGUI);
 		Parent root = fxmlLoader.load();
