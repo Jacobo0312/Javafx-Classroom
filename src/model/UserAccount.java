@@ -9,16 +9,16 @@ private Image photo;
 private Gender gender;
 private String careers;
 private String birthday;
-private String favoriteBrowsers;
+private String favoriteBrowser;
 
-public UserAccount(String username, String password, Image photo, Gender gender,String careers, String birthday, String favoriteBrowsers) {
+public UserAccount(String username, String password, Image photo, Gender gender,String careers, String birthday, String favoriteBrowser) {
     this.username = username;
     this.password = password;
     this.photo = photo;
     this.gender = gender;
     this.careers=careers;
     this.birthday = birthday;
-    this.favoriteBrowsers = favoriteBrowsers;
+    this.favoriteBrowser = favoriteBrowser;
 }
 
     public String getUsername() {
@@ -45,8 +45,8 @@ public UserAccount(String username, String password, Image photo, Gender gender,
         return this.birthday;
     }
 
-    public String getFavoriteBrowsers() {
-        return this.favoriteBrowsers;
+    public String getFavoriteBrowser() {
+        return this.favoriteBrowser;
     }
 
     

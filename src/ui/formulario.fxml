@@ -72,7 +72,7 @@
          </GridPane.margin>
       </VBox>
       <DatePicker fx:id="birthday" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <ChoiceBox fx:id="txtBrowser" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
       <Button mnemonicParsing="false" onAction="#loadWelcome" text="Sign in" GridPane.rowIndex="8" />
       <Button mnemonicParsing="false" onAction="#addUser" text="Create Account" GridPane.columnIndex="1" GridPane.rowIndex="8" />
       <Label text="Join to classroom" />

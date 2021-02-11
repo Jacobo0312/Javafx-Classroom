@@ -14,11 +14,11 @@ public class Classroom {
     }
 
     public void addUser(String username, String password, Image photo, String pGender, String careers, String birthday,
-            String browsers) {
+            String browser) {
 
         Gender gender = Gender.valueOf(pGender);
 
-        users.add(new UserAccount(username, password, photo, gender, careers, birthday, browsers));
+        users.add(new UserAccount(username, password, photo, gender, careers, birthday, browser));
     }
 
     public ArrayList<UserAccount> getUsers() {
