@@ -14,6 +14,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -39,13 +40,13 @@ public class ClassroomGUI {
     private TextField txtUser;
 
     @FXML
-    private TextField txtPassword;
+    private PasswordField txtPassword;
 
     @FXML
     private TextField createUser;
 
     @FXML
-    private TextField createPassword;
+    private PasswordField userPassword;
 
     @FXML
     private RadioButton male, female, other;
@@ -156,85 +157,94 @@ public class ClassroomGUI {
 
     @FXML
     public void addUser(ActionEvent event) throws IOException {
-        
-        try{
-            String username = createUser.getText();//No puden estar vacios
-            String password = createPassword.getText();
-    
-            String genderUser;
+
+        try {
+            boolean valid = true;
+            String username = createUser.getText();
+            String password = userPassword.getText();
+            if (username.isEmpty() || password.isEmpty()) valid = false;
+
+            String genderUser = "";
             if (male.isSelected()) {
                 genderUser = "MALE";
             } else if (female.isSelected()) {
                 genderUser = "FEMALE";
-            } else {
+            } else if (other.isSelected()) {
                 genderUser = "OTHER";
-            }
-    
-            String careers="";
-    
-            if (ingindus.isSelected()) {
-                careers+=("- ING_INDUSTRIAL");
-            }
-    
-            if (ingsis.isSelected()) {
-                careers+=("- ING_SISTEMAS");
-            }
-    
-            if (ingtel.isSelected()) {
-                careers+=("- ING_TELEMATICA");
-            }
-    
-            String dateBirthday = birthday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-    
-    
-    
-    
-            String browser=(String) txtBrowser.getValue();
-    
-            String ruta=directory.getText();
-            photo = new Image("file:"+ruta);
-            loginUser=username;
-    
-            classroom.addUser(username, password, photo, genderUser, careers, dateBirthday, browser);
-    
-            loadTable(event);
+            } else valid = false;
 
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Account created");
-            alert.setHeaderText(null);
-            alert.setContentText("The new account has been created");
-            
-            alert.showAndWait();
-    
+            String careers = "";
+
+            if (ingindus.isSelected()) {
+                careers += ("- ING_INDUSTRIAL");
+            }
+
+            if (ingsis.isSelected()) {
+                careers += ("- ING_SISTEMAS");
+            }
+
+            if (ingtel.isSelected()) {
+                careers += ("- ING_TELEMATICA");
+            }
+
+            if (careers.isEmpty()) valid = false;
+
+            String dateBirthday = birthday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+            String browser = (String) txtBrowser.getValue();
+            if (browser.isEmpty()) valid=false;
+
+            String ruta = directory.getText();
+            photo = new Image("file:" + ruta);
+            loginUser = username;
+
+            if (valid) {
+
+                classroom.addUser(username, password, photo, genderUser, careers, dateBirthday, browser);
+
+                loadTable(event);
+
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Account created");
+                alert.setHeaderText(null);
+                alert.setContentText("The new account has been created");
+
+                alert.showAndWait();
+
+            } else {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Validation Error");
+                alert.setHeaderText(null);
+                alert.setContentText("You must fill each field in the form");
+
+                alert.showAndWait();
+
+            }
+
         } catch (Exception e) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Validation Error");
             alert.setHeaderText(null);
             alert.setContentText("You must fill each field in the form");
-            
+
             alert.showAndWait();
         }
     }
-    
-    
-        @FXML
-        public void chooserImage(ActionEvent event) {
-    
-            FileChooser fc = new FileChooser();
-            fc.getExtensionFilters().addAll(new ExtensionFilter("Images","*.jpg","*.png"));
-            File file=fc.showOpenDialog(null);
-    
-            if (file !=null){
-                directory.setText(file.getAbsolutePath());
-            }else{
-                directory.setText("Invalid");
-    
-            }
+
+    @FXML
+    public void chooserImage(ActionEvent event) {
+
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new ExtensionFilter("Images", "*.jpg", "*.png"));
+        File file = fc.showOpenDialog(null);
+
+        if (file != null) {
+            directory.setText(file.getAbsolutePath());
+        } else {
+            directory.setText("Invalid");
+
         }
-        
-        
-
-
+    }
 
     @FXML
     void login(ActionEvent event) throws IOException {
@@ -249,9 +259,8 @@ public class ClassroomGUI {
             alert.setTitle("Log in incorrect");
             alert.setHeaderText(null);
             alert.setContentText("The username and password given are incorrect");
-            
-            alert.showAndWait();
 
+            alert.showAndWait();
 
         } else {
             photo = user.getPhoto();

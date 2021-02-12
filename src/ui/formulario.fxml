@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -87,10 +88,6 @@
             <Insets left="80.0" />
          </padding></Label>
       <TextField fx:id="createUser" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets bottom="20.0" right="20.0" top="20.0" />
-         </GridPane.margin></TextField>
-      <TextField fx:id="createPassword" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="20.0" right="20.0" top="20.0" />
          </GridPane.margin></TextField>
@@ -188,5 +185,9 @@
             </Button>
          </children>
       </HBox>
+      <PasswordField fx:id="userPassword" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="20.0" right="20.0" top="20.0" />
+         </GridPane.margin></PasswordField>
    </children>
 </GridPane>
