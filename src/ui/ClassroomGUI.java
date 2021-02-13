@@ -151,7 +151,7 @@ public class ClassroomGUI {
         pane.getChildren().clear();
         pane.setCenter(formulario);
 
-        txtBrowser.getItems().addAll("EDGE", "FIREFOX", "OPERA", "SAFARI");
+        txtBrowser.getItems().addAll("EDGE", "FIREFOX", "OPERA", "SAFARI","CHROME","THOR");
 
     }
 

@@ -10,14 +10,7 @@
             "request": "launch",
             "mainClass": "ui.Main",
             "vmArgs": "--module-path C:/Users/juanj/Downloads/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml",
-            "projectName": "javaFX-Seguimiento1_fff1ea32"
-        },
-        {
-            "type": "java",
-            "name": "Launch Current File",
-            "request": "launch",
-            "vmArgs": "--module-path C:/Users/juanj/Downloads/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml",
-            "mainClass": "${file}"
+            "projectName": "javaFX-class_room_4291c1ec"
         }
     ]
 }
