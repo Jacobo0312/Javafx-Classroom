@@ -8,6 +8,14 @@
             "type": "java",
             "name": "Launch Main",
             "request": "launch",
+            "vmArgs": "--module-path C:/Users/juanj/Downloads/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml",
+            "mainClass": "ui.Main",
+            "projectName": "javaFX-class_room_1f75e6f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
             "mainClass": "ui.Main",
             "vmArgs": "--module-path C:/Users/juanj/Downloads/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml",
             "projectName": "javaFX-class_room_4291c1ec"

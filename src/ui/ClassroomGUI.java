@@ -194,13 +194,13 @@ public class ClassroomGUI {
             String browser = (String) txtBrowser.getValue();
             if (browser.isEmpty()) valid=false;
 
-            String ruta = directory.getText();
-            photo = new Image("file:" + ruta);
+            String rutaPhoto = directory.getText();
+            photo = new Image("file:" + rutaPhoto);
             loginUser = username;
 
             if (valid) {
 
-                classroom.addUser(username, password, photo, genderUser, careers, dateBirthday, browser);
+                classroom.addUser(username, password, rutaPhoto, genderUser, careers, dateBirthday, browser);
 
                 loadTable(event);
 
@@ -263,11 +263,35 @@ public class ClassroomGUI {
             alert.showAndWait();
 
         } else {
-            photo = user.getPhoto();
+            photo = new Image("file:" + user.getPhoto());
             loginUser = user.getUsername();
             loadTable(event);
 
         }
+
+    }
+
+
+
+    @FXML
+    public void importContacts(ActionEvent event) throws IOException {
+
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new ExtensionFilter("Text", "*.txt"));
+        File file = fc.showOpenDialog(pane.getScene().getWindow());
+
+        classroom.importData(file.getAbsolutePath());
+
+    }
+
+    @FXML
+    public void exportContacts(ActionEvent event) throws IOException {
+
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().addAll(new ExtensionFilter("Text", "*.txt"));
+        File file = fc.showSaveDialog(pane.getScene().getWindow());
+
+        classroom.exportData(file.getAbsolutePath());
 
     }
 

@@ -1,0 +1,1 @@
+Prueba;1;C:\Users\juanj\OneDrive\Escritorio\APO 2\javaFX-class_room\src\test-images\IMG_3962.jpg;MALE;- ING_INDUSTRIAL- ING_TELEMATICA;2021-02-10;OPERA
